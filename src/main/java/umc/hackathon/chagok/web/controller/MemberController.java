@@ -19,11 +19,22 @@ import umc.hackathon.chagok.apiPayload.ApiResponse;
 import umc.hackathon.chagok.service.MemberService.MemberService;
 import umc.hackathon.chagok.web.dto.MemberRequest;
 import umc.hackathon.chagok.web.dto.MemberResponse;
+import umc.hackathon.chagok.web.dto.MemberResponse.LoginResponseDTO;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/users")
 @RequiredArgsConstructor
 public class MemberController {
+  
+  private final MemberService memberService;
+
+    @PostMapping("/login")
+    public ApiResponse<LoginResponseDTO> login(@RequestBody MemberRequest.LoginRequestDTO request) {
+        Long id = memberService.login(request);
+        return ApiResponse.onSuccess(MemberResponse.LoginResponseDTO.builder().memberId(id).
+                build());
+    }
 
     @Operation(summary = "특정 회원의 박스 조회 API", description = "특정 회원의 월별 박스 목록을 조회합니다. Query parameter로 달, 년도를 넘겨주세요. Header로 memberId를 넘겨주세요")
     @GetMapping("")
@@ -42,8 +53,6 @@ public class MemberController {
         List<Boolean> boxList = memberService.boxCheck(memberId, mm, yy);
         return ApiResponse.onSuccess(boxList);
     }
-
-    private final MemberService memberService;
 
 
 }
