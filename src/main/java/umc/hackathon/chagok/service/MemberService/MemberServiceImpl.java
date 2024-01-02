@@ -1,6 +1,7 @@
 package umc.hackathon.chagok.service.MemberService;
 
 import static umc.hackathon.chagok.apiPayload.code.status.ErrorStatus.MEMBER_NOT_FOUND;
+import static umc.hackathon.chagok.apiPayload.code.status.ErrorStatus.MEMBER_NOT_FOUND_OR_PASSWORD_ERROR;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -57,6 +58,16 @@ public class MemberServiceImpl implements MemberService {
             boxCheckList.add(postExists);
         }
         return boxCheckList;
+        }
+        
+        public Long login(MemberRequest.LoginRequestDTO request) {
+        String email = request.getEmail();
+        String password = request.getPassword();
+        Optional<Member> memberOptional = memberRepository.findByEmailAndPassword(email, password);
+        if (memberOptional.isEmpty()) {
+            throw new GeneralException(MEMBER_NOT_FOUND_OR_PASSWORD_ERROR);
+        }
+        return memberOptional.get().getId();
     }
 
 }
