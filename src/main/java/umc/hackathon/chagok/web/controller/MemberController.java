@@ -19,7 +19,6 @@ import umc.hackathon.chagok.apiPayload.ApiResponse;
 import umc.hackathon.chagok.service.MemberService.MemberService;
 import umc.hackathon.chagok.web.dto.MemberRequest;
 import umc.hackathon.chagok.web.dto.MemberResponse;
-import umc.hackathon.chagok.web.dto.MemberResponse.LoginResponseDTO;
 
 @RestController
 @RequestMapping("/users")
