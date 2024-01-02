@@ -11,7 +11,11 @@
 <br>
 
 ## 🛠 기술 스택
-> <img src="https://img.shields.io/badge/JAVA-3178C6?style=flat-square&logo=JAVA&logoColor=white"/> <img src="https://img.shields.io/badge/Spring boot-61DAFB?style=flat-square&logo=Spring boot&logoColor=white"/> <img src="https://img.shields.io/badge/MySql-DB7093?style=flat-square&logo=MySql&logoColor=white"/>
+> <a href="https://www.java.com/ko/"><img src="https://img.shields.io/badge/Java-F58219?style=flat-square&logo=Java&logoColor=white"/></a>
+<a href="https://spring.io/projects/spring-boot"><img src="https://img.shields.io/badge/SpringBoot-6AAE3D?style=flat-square&logo=SpringBoot&logoColor=white"/></a>
+<a href="https://spring.io/projects/spring-data-jpa"><img src="https://img.shields.io/badge/Spring Data JPA-6AAE3D?style=flat-square&logo=&logoColor=white"/></a>
+<a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/></a>
+<a href="https://aws.amazon.com/ko/?nc2=h_lg"><img src="https://img.shields.io/badge/AWS-F89501?style=flat-square&logo=Amazon AWS&logoColor=white"/></a>  
 <br>
 
 ## 📃 Commit Message Convention
