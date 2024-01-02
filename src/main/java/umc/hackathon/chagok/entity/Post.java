@@ -17,8 +17,10 @@ public class Post extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     private String title;
 
+    @Setter
     private String content;
 
     @JoinColumn(name = "member_id")

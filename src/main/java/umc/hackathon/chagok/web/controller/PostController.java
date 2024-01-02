@@ -13,6 +13,8 @@ import umc.hackathon.chagok.web.dto.PostResponse;
 import java.util.List;
 
 
+import javax.validation.constraints.Null;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/posts")
@@ -20,10 +22,20 @@ public class PostController {
 
     private final PostService postService;
 
+    // TIL 생성하기
     @PostMapping("")
-    public ApiResponse createPost(@RequestHeader(name = "memberId") Long memberId, @RequestBody PostRequest.CreatePostDTO request){
+    public ApiResponse<Null> createPost(@RequestHeader(name = "memberId") Long memberId, @RequestBody PostRequest.CreatePostDTO request){
 
         postService.createPost(memberId, request);
+
+        return ApiResponse.onSuccess(null);
+    }
+
+    // TIL 수정하기
+    @PutMapping("/{postId}")
+    public ApiResponse<Null> updatePost(@PathVariable(name = "postId")Long postId, @RequestBody PostRequest.UpdatePostDTO request){
+
+        postService.updatePost(postId, request);
 
         return ApiResponse.onSuccess(null);
     }
