@@ -34,7 +34,7 @@ public class MemberController {
     })
     @Parameters({
             @Parameter(name = "mm", description = "선택 달 입니다!"),
-            @Parameter(name = "page", description = "선택 년도 입니다!"),
+            @Parameter(name = "yy", description = "선택 년도 입니다!"),
     })
     public ApiResponse<List<Boolean>> viewBox(@RequestParam Integer mm, @RequestParam Integer yy,
                                               @RequestHeader Long memberId) {
