@@ -9,6 +9,7 @@ import umc.hackathon.chagok.web.dto.PostRequest;
 import lombok.Getter;
 import umc.hackathon.chagok.converter.PostConverter;
 import umc.hackathon.chagok.entity.Post;
+import umc.hackathon.chagok.web.dto.PostResponse;
 
 import java.util.List;
 

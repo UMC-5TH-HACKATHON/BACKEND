@@ -24,7 +24,6 @@ import umc.hackathon.chagok.web.dto.MemberResponse.LoginResponseDTO;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
-@RequiredArgsConstructor
 public class MemberController {
   
   private final MemberService memberService;
