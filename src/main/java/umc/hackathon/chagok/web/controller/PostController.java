@@ -12,7 +12,6 @@ import umc.hackathon.chagok.web.dto.PostResponse;
 
 import java.util.List;
 
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/posts")
@@ -24,7 +23,6 @@ public class PostController {
     public ApiResponse createPost(@RequestHeader(name = "memberId") Long memberId, @RequestBody PostRequest.CreatePostDTO request){
 
         postService.createPost(memberId, request);
-
         return ApiResponse.onSuccess(null);
     }
   
@@ -38,5 +36,11 @@ public class PostController {
     public ApiResponse<PostResponse.MyPostPreviewListDTO> getMyPostList(@PathVariable(name = "memberId") Long memberId){
         List<Post> myPostList = postService.getMyPostList(memberId);
         return ApiResponse.onSuccess(PostConverter.myPostPreviewListDTO(myPostList));
+    }
+
+    @GetMapping("/contents/{postId}")
+    public ApiResponse<PostResponse.PostContentDTO> getPostContent(@PathVariable(name = "postId") Long postId){
+        Post postContent = postService.getPostContent(postId);
+        return ApiResponse.onSuccess(PostConverter.postContentDTO(postContent));
     }
 }

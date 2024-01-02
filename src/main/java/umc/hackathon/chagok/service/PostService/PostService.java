@@ -12,4 +12,5 @@ public interface PostService {
     List<Post> getMyPostList(Long memberId);
     List<Post> getPostList();
 
+    Post getPostContent(Long postId);
 }

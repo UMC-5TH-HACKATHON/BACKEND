@@ -15,7 +15,6 @@ import umc.hackathon.chagok.web.dto.PostRequest;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import umc.hackathon.chagok.repository.MemberRepository;
 
@@ -73,5 +72,11 @@ public class PostServiceImpl implements PostService{
 
         List<Post> postList = postRepository.findAll();
         return postList;
+    }
+
+    @Override
+    public Post getPostContent(Long postId) {
+        Post postContent = postRepository.findById(postId).get();
+        return postContent;
     }
 }
