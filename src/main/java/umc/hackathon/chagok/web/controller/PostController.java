@@ -38,6 +38,10 @@ public class PostController {
     private final CategoryService categoryService;
 
     // TIL 생성하기
+    @Operation(summary = "TIL 생성하기 API", description = "post를 생성합니다.")
+    @Parameters({
+            @Parameter(name = "memberId", description = "멤버 id 입니다. request header 입니다.")
+    })
     @PostMapping("")
     public ApiResponse<Null> createPost(@RequestHeader(name = "memberId") Long memberId, @RequestBody PostRequest.CreatePostDTO request){
 
@@ -64,6 +68,10 @@ public class PostController {
     }
 
     // TIL 수정하기
+    @Operation(summary = "TIL 수정하기 API", description = "post의 내용을 수정합니다.")
+    @Parameters({
+            @Parameter(name = "postId", description = "TIL id 입니다. path variable로 받습니다.")
+    })
     @PutMapping("/{postId}")
     public ApiResponse<Null> updatePost(@PathVariable(name = "postId")Long postId, @RequestBody PostRequest.UpdatePostDTO request){
 
@@ -73,6 +81,10 @@ public class PostController {
     }
 
     // TIL 삭제하기
+    @Operation(summary = "TIL 삭제하기 API", description = "post를 삭제합니다.")
+    @Parameters({
+            @Parameter(name = "postId", description = "TIL id 입니다. path variable로 받습니다.")
+    })
     @DeleteMapping("/{postId}")
     public ApiResponse<Null> deletePost(@PathVariable(name = "postId")Long postId){
 
