@@ -1,10 +1,16 @@
 package umc.hackathon.chagok.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
+@AllArgsConstructor
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post extends BaseEntity{
 
     @Id
@@ -22,4 +28,23 @@ public class Post extends BaseEntity{
     @JoinColumn(name = "category_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Tag> tagList = new ArrayList<>();
+
+    public void setMember(Member member){
+        this.member = member;
+    }
+
+    public void setCategory(Category category){
+        this.category = category;
+    }
+
+    public void setTagList(List<Tag> tagList){
+        this.tagList = tagList;
+
+        tagList.forEach(tag -> {
+            tag.setPost(this);
+        });
+    }
 }

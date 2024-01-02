@@ -1,10 +1,13 @@
 package umc.hackathon.chagok.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 @Entity
 @Getter
+@AllArgsConstructor
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Tag extends BaseEntity{
 
     @Id
@@ -16,4 +19,8 @@ public class Tag extends BaseEntity{
     @JoinColumn(name = "post_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
+
+    public void setPost(Post post){
+        this.post = post;
+    }
 }
