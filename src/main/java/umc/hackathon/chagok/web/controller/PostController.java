@@ -94,7 +94,7 @@ public class PostController {
     }
 
     @Operation(summary = "전체 TIL 조회 API", description = "전체 TIL을 조회하는 API 입니다.")
-    @GetMapping("/")
+    @GetMapping("")
     public ApiResponse<PostResponse.PostPreviewListDTO> getPostList(){
         List<Post> postList = postService.getPostList();
         return ApiResponse.onSuccess(PostConverter.postPreviewListDTO(postList));
