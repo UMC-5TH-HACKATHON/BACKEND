@@ -11,6 +11,7 @@ import umc.hackathon.chagok.entity.Post;
 import umc.hackathon.chagok.web.dto.PostResponse;
 
 import java.util.List;
+import umc.hackathon.chagok.web.dto.PostResponse;
 
 
 import javax.validation.constraints.Null;

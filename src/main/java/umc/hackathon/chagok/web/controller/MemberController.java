@@ -28,7 +28,13 @@ public class MemberController {
   
   private final MemberService memberService;
 
+    @Operation(summary = "로그인 API", description = "로그인이 성공하면 memberId를 넘겨줍니다. RequestBody로 email, password를 넘겨주세요")
     @PostMapping("/login")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "MEMBER4003", description = "없는 사용자이거나 비밀번호가 틀렸습니다."),
+
+    })
     public ApiResponse<LoginResponseDTO> login(@RequestBody MemberRequest.LoginRequestDTO request) {
         Long id = memberService.login(request);
         return ApiResponse.onSuccess(MemberResponse.LoginResponseDTO.builder().memberId(id).
