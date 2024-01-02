@@ -23,7 +23,10 @@ public enum ErrorStatus implements BaseErrorCode {
     MEMBER_NOT_FOUND_OR_PASSWORD_ERROR(HttpStatus.BAD_REQUEST, "MEMBER4003", "없는 사용자이거나 비밀번호가 틀렸습니다."),
 
     // 카테고리 관련 에러
-    CATEGORY_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "카테고리가 없습니다."),
+    CATEGORY_NOT_FOUND(HttpStatus.BAD_REQUEST, "CATEGORY4001", "카테고리가 없습니다."),
+
+    // TIL(게시글) 관련 에러
+    POST_NOT_FOUND(HttpStatus.BAD_REQUEST, "POST4001", "TIL(게시글)이 없습니다."),
 
     // test
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001","이거는 테스트");

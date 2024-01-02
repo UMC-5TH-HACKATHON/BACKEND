@@ -16,4 +16,6 @@ public class Knowledge extends  BaseEntity{
     private String title;
 
     private String content;
+
+    private String imgUrl;
 }
