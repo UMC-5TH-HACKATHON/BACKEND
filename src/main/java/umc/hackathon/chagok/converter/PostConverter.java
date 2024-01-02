@@ -18,7 +18,7 @@ public class PostConverter {
                 .title(post.getTitle())
                 .content(post.getContent())
                 .categoryId(post.getCategory().getId())
-                .tagList(post.getTagList())
+                //.tagList(post.getTagList())
                 .createdAt(post.getCreatedAt())
                 .build();
     }
