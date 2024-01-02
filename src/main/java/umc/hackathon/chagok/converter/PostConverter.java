@@ -1,15 +1,30 @@
 package umc.hackathon.chagok.converter;
 
+import lombok.RequiredArgsConstructor;
 import umc.hackathon.chagok.entity.Member;
 import umc.hackathon.chagok.entity.Post;
+import umc.hackathon.chagok.entity.Tag;
 import umc.hackathon.chagok.web.dto.PostResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 public class PostConverter {
 
+    public static PostResponse.PostContentDTO postContentDTO(Post post){
+        return PostResponse.PostContentDTO.builder()
+                .title(post.getTitle())
+                .content(post.getContent())
+                .categoryId(post.getCategory().getId())
+                //.tagList(post.getTagList())
+                .createdAt(post.getCreatedAt())
+                .build();
+    }
+
     public static PostResponse.MyPostPreviewDTO myPostPreviewDTO(Member member, Post post){
+
         return PostResponse.MyPostPreviewDTO.builder()
                 .title(post.getTitle())
                 .content(post.getContent())

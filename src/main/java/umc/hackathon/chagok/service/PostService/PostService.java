@@ -15,6 +15,9 @@ public interface PostService {
 
     List<Post> getPostList();
 
+
+    Post getPostContent(Long postId);
+
     public void deletePost(Long postId);
 
 }
