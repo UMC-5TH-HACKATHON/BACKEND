@@ -1,6 +1,10 @@
 package umc.hackathon.chagok.web.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
 
 import io.swagger.annotations.Api;
@@ -41,6 +45,7 @@ public class PostController {
         return ApiResponse.onSuccess(null);
     }
 
+    @Operation(summary = "카테고리 조회 API", description = "post의 카테고리를 조회합니다.")
     @RequestMapping(value="/categories" , method= RequestMethod.GET)
     public ApiResponse <List<CategoryDTO>> getCategories(){
 
@@ -49,10 +54,11 @@ public class PostController {
         return ApiResponse.onSuccess(resCategories);
     }
 
+    @Operation(summary = "카테고리 생성 API", description = "post의 카테고리를 생성합니다.")
     @PostMapping("/categories")
-    public ApiResponse createCategory(@RequestHeader(name = "memberId") Long memberId, @RequestBody CategoryRequest.CreateCategoryDto request){
+    public ApiResponse createCategory(@RequestBody CategoryRequest.CreateCategoryDto request){
 
-        categoryService.createCategory(memberId, request);
+        categoryService.createCategory(request);
 
         return ApiResponse.onSuccess(null);
     }
@@ -116,5 +122,16 @@ public class PostController {
 
         List<Post> postList = postService.getMyDatePostList(memberId,mm,yy,dd);
         return ApiResponse.onSuccess(PostConverter.postTimeContentListDTO(postList));
+    }
+
+    @Operation(summary = "특정 Tag를 포함하는 TIL 조회 API", description = "특정 Tag를 포함하는 TIL을 조회하는 API 입니다. query string으로 tag name을 입력해주세요.")
+    @Parameters({
+            @Parameter(name = "tagName", description = "tag의 이름입니다. query string 입니다.")
+    })
+    @GetMapping("/search")
+    public ApiResponse<PostResponse.PostSearchTagListDTO> getSearchTag(@RequestParam String tagName){
+
+        List<Post> postList = postService.getSearchTagPostList(tagName);
+        return ApiResponse.onSuccess(PostConverter.postSearchTagListDTO(postList));
     }
 }

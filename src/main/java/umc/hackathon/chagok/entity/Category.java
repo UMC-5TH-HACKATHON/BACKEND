@@ -25,13 +25,5 @@ public class Category extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "member_id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
-
-    public void setMember(Member member){
-        this.member = member;
-    }
-
     private String categoryName;
 }

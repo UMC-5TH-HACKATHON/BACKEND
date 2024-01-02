@@ -22,4 +22,5 @@ public interface PostService {
 
     List<Post> getMyDatePostList(Long memberId, Integer mm, Integer yy, Integer dd);
 
+    List<Post> getSearchTagPostList(String tagName);
 }
