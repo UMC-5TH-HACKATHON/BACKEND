@@ -3,6 +3,7 @@ package umc.hackathon.chagok.web.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.headers.Header;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -49,8 +50,9 @@ public class MemberController {
 
     })
     @Parameters({
-            @Parameter(name = "mm", description = "선택 달 입니다!"),
-            @Parameter(name = "yy", description = "선택 년도 입니다!"),
+            @Parameter(name = "mm", description = "선택 달 입니다!", example = "01"),
+            @Parameter(name = "yy", description = "선택 년도 입니다!", example = "2024"),
+            @Parameter(name = "memberId", description = "유저 식별자", example = "1")
     })
     public ApiResponse<List<Boolean>> viewBox(@RequestParam Integer mm, @RequestParam Integer yy,
                                               @RequestHeader Long memberId) {

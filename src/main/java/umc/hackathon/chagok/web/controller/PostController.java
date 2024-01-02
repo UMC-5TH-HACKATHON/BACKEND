@@ -40,7 +40,7 @@ public class PostController {
     // TIL 생성하기
     @Operation(summary = "TIL 생성하기 API", description = "post를 생성합니다.")
     @Parameters({
-            @Parameter(name = "memberId", description = "멤버 id 입니다. request header 입니다.")
+            @Parameter(name = "memberId", description = "멤버 id 입니다. request header 입니다.", example = "1")
     })
     @PostMapping("")
     public ApiResponse<Null> createPost(@RequestHeader(name = "memberId") Long memberId, @RequestBody PostRequest.CreatePostDTO request){
@@ -70,7 +70,7 @@ public class PostController {
     // TIL 수정하기
     @Operation(summary = "TIL 수정하기 API", description = "post의 내용을 수정합니다.")
     @Parameters({
-            @Parameter(name = "postId", description = "TIL id 입니다. path variable로 받습니다.")
+            @Parameter(name = "postId", description = "TIL id 입니다. path variable로 받습니다.", example = "39")
     })
     @PutMapping("/{postId}")
     public ApiResponse<Null> updatePost(@PathVariable(name = "postId")Long postId, @RequestBody PostRequest.UpdatePostDTO request){
@@ -83,7 +83,7 @@ public class PostController {
     // TIL 삭제하기
     @Operation(summary = "TIL 삭제하기 API", description = "post를 삭제합니다.")
     @Parameters({
-            @Parameter(name = "postId", description = "TIL id 입니다. path variable로 받습니다.")
+            @Parameter(name = "postId", description = "TIL id 입니다. path variable로 받습니다.", example = "39")
     })
     @DeleteMapping("/{postId}")
     public ApiResponse<Null> deletePost(@PathVariable(name = "postId")Long postId){
@@ -102,7 +102,7 @@ public class PostController {
 
     @Operation(summary = "나의 TIL 조회 API", description = "나의 TIL을 조회하는 API 입니다. path variable 로 member id를 입력해주세요.")
     @Parameters({
-            @Parameter(name = "memberId", description = "멤버의 아이디, path variable 입니다.")
+            @Parameter(name = "memberId", description = "멤버의 아이디, path variable 입니다.", example = "1")
     })
     @GetMapping("/{memberId}")
     public ApiResponse<PostResponse.MyPostPreviewListDTO> getMyPostList(@PathVariable(name = "memberId") Long memberId){
@@ -112,7 +112,7 @@ public class PostController {
 
     @Operation(summary = "특정 TIL 상세 조회 API", description = "특정 TIL을 상세 조회하는 API 입니다. path variable 로 post id를 입력해주세요.")
     @Parameters({
-            @Parameter(name = "postId", description = "TIL의 아이디, path variable 입니다.")
+            @Parameter(name = "postId", description = "TIL의 아이디, path variable 입니다.", example = "39")
     })
     @GetMapping("/contents/{postId}")
     public ApiResponse<PostResponse.PostContentDTO> getPostContent(@PathVariable(name = "postId") Long postId){
@@ -122,10 +122,10 @@ public class PostController {
 
     @Operation(summary = "특정 기간 TIL 상세 조회 API", description = "특정 기간의 TIL을 상세 조회하는 API 입니다. path variable 로 member id와 query string으로 year, month, day를 입력해주세요.")
     @Parameters({
-            @Parameter(name = "memberId", description = "멤버의 아이디, path variable 입니다."),
-            @Parameter(name = "yy", description = "해당 날짜의 연도"),
-            @Parameter(name = "mm", description = "해당 날짜의 달"),
-            @Parameter(name = "dd", description = "해당 날짜의 일")
+            @Parameter(name = "memberId", description = "멤버의 아이디, path variable 입니다.", example = "1"),
+            @Parameter(name = "yy", description = "해당 날짜의 연도", example = "2024"),
+            @Parameter(name = "mm", description = "해당 날짜의 달", example = "01"),
+            @Parameter(name = "dd", description = "해당 날짜의 일", example = "03")
     })
     @GetMapping("/date/{memberId}/")
     public ApiResponse<PostResponse.PostTimeContentListDTO> getTimeContent(@PathVariable(name = "memberId") Long memberId,
@@ -138,7 +138,7 @@ public class PostController {
 
     @Operation(summary = "특정 Tag를 포함하는 TIL 조회 API", description = "특정 Tag를 포함하는 TIL을 조회하는 API 입니다. query string으로 tag name을 입력해주세요.")
     @Parameters({
-            @Parameter(name = "tagName", description = "tag의 이름입니다. query string 입니다.")
+            @Parameter(name = "tagName", description = "tag의 이름입니다. query string 입니다.", example = "스프링부트")
     })
     @GetMapping("/search")
     public ApiResponse<PostResponse.PostSearchTagListDTO> getSearchTag(@RequestParam String tagName){
