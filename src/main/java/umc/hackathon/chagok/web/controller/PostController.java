@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import umc.hackathon.chagok.apiPayload.ApiResponse;
 import umc.hackathon.chagok.service.PostService.PostService;
 import umc.hackathon.chagok.web.dto.PostRequest;
-import lombok.Getter;
 import umc.hackathon.chagok.converter.PostConverter;
 import umc.hackathon.chagok.entity.Post;
+import umc.hackathon.chagok.web.dto.PostResponse;
 
 import java.util.List;
 
@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/posts")
-@RequiredArgsConstructor
 public class PostController {
 
     private final PostService postService;

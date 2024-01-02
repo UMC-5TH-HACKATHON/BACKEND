@@ -10,7 +10,6 @@ public interface PostService {
     public Post createPost(Long memberId, PostRequest.CreatePostDTO request);
 
     List<Post> getMyPostList(Long memberId);
-
     List<Post> getPostList();
 
 }
