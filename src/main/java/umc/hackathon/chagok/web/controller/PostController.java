@@ -123,4 +123,15 @@ public class PostController {
         List<Post> postList = postService.getMyDatePostList(memberId,mm,yy,dd);
         return ApiResponse.onSuccess(PostConverter.postTimeContentListDTO(postList));
     }
+
+    @Operation(summary = "특정 Tag를 포함하는 TIL 조회 API", description = "특정 Tag를 포함하는 TIL을 조회하는 API 입니다. query string으로 tag name을 입력해주세요.")
+    @Parameters({
+            @Parameter(name = "tagName", description = "tag의 이름입니다. query string 입니다.")
+    })
+    @GetMapping("/search")
+    public ApiResponse<PostResponse.PostSearchTagListDTO> getSearchTag(@RequestParam String tagName){
+
+        List<Post> postList = postService.getSearchTagPostList(tagName);
+        return ApiResponse.onSuccess(PostConverter.postSearchTagListDTO(postList));
+    }
 }

@@ -43,6 +43,26 @@ public class PostConverter {
                 .build();
     }
 
+    public static PostResponse.PostSearchTagDTO postSearchTagDTO(Member member, Post post){
+
+        return PostResponse.PostSearchTagDTO.builder()
+                .title(post.getTitle())
+                .content(post.getContent())
+                .categoryId(post.getCategory().getId())
+                .tagList(post.getTagList().stream().map(tag -> tag.getTagName()).toList())
+                .createdAt(post.getCreatedAt())
+                .build();
+    }
+
+    public static PostResponse.PostSearchTagListDTO postSearchTagListDTO(List<Post> postList){
+        List<PostResponse.PostSearchTagDTO> postSearchTagDTOList = postList.stream()
+                .map(post -> postSearchTagDTO(post.getMember(), post)).collect(Collectors.toList());
+
+        return PostResponse.PostSearchTagListDTO.builder()
+                .postSearchTagDTOList(postSearchTagDTOList)
+                .build();
+    }
+
     public static PostResponse.MyPostPreviewDTO myPostPreviewDTO(Member member, Post post){
 
         return PostResponse.MyPostPreviewDTO.builder()
