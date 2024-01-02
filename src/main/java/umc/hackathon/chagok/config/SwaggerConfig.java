@@ -15,8 +15,8 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI UMCchagokAPI() {
         Info info = new Info()
-                .title("UMC Server WorkBook API")
-                .description("UMC Server WorkBook API 명세서")
+                .title("UMC 5th HACKATHON API")
+                .description("UMC 5th HACKATHON API 명세서")
                 .version("1.0.0");
 
         return new OpenAPI()

@@ -18,7 +18,7 @@ public class PostConverter {
                 .title(post.getTitle())
                 .content(post.getContent())
                 .categoryId(post.getCategory().getId())
-                //.tagList(post.getTagList())
+                .tagList(post.getTagList().stream().map(tag -> tag.getTagName()).toList())
                 .createdAt(post.getCreatedAt())
                 .build();
     }
@@ -29,7 +29,7 @@ public class PostConverter {
                 .title(post.getTitle())
                 .content(post.getContent())
                 .categoryId(post.getCategory().getId())
-                //.tagList(post.getTagList())
+                .tagList(post.getTagList().stream().map(tag -> tag.getTagName()).toList())
                 .createdAt(post.getCreatedAt())
                 .build();
     }
@@ -50,7 +50,7 @@ public class PostConverter {
                 .title(post.getTitle())
                 .content(post.getContent())
                 .categoryId(post.getCategory().getId())
-                //.tagList(post.getTagList())
+                .tagList(post.getTagList().stream().map(tag -> tag.getTagName()).toList())
                 .createdAt(post.getCreatedAt())
                 .build();
     }

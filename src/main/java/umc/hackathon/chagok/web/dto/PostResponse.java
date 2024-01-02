@@ -29,7 +29,7 @@ public class PostResponse {
         String title;
         String content;
         Long categoryId;
-        List<Tag> tagList;
+        List<String> tagList;
         LocalDateTime createdAt;
     }
 
@@ -50,7 +50,7 @@ public class PostResponse {
         String title;
         String content;
         Long categoryId;
-        List<Tag> tagList;
+        List<String> tagList;
         LocalDateTime createdAt;
     }
 
@@ -62,7 +62,7 @@ public class PostResponse {
         String title;
         String content;
         Long categoryId;
-        List<Tag> tagList;
+        List<String> tagList;
         LocalDateTime createdAt;
     }
 }
