@@ -9,5 +9,6 @@ import umc.hackathon.chagok.entity.Member;
 public interface MemberService {
       public Member findMember(Long memberId);
     public List<Boolean> boxCheck(Long memberId, Integer mm, Integer yy);
+      Long login(MemberRequest.LoginRequestDTO request);
 
 }
