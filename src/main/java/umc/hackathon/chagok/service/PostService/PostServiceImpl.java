@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import umc.hackathon.chagok.apiPayload.code.status.ErrorStatus;
 import umc.hackathon.chagok.apiPayload.exception.GeneralException;
 import umc.hackathon.chagok.entity.Category;
@@ -127,4 +129,5 @@ public class PostServiceImpl implements PostService{
                 }
         );
     }
+
 }
