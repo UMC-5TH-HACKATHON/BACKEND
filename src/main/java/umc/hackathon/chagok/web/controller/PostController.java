@@ -3,7 +3,6 @@ package umc.hackathon.chagok.web.controller;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import umc.hackathon.chagok.apiPayload.ApiResponse;
 import umc.hackathon.chagok.service.PostService.PostService;
@@ -14,9 +13,6 @@ import umc.hackathon.chagok.web.dto.CategoryResponse.CategoryDTO;
 import umc.hackathon.chagok.web.dto.PostRequest;
 import umc.hackathon.chagok.converter.PostConverter;
 import umc.hackathon.chagok.entity.Post;
-import umc.hackathon.chagok.web.dto.PostResponse;
-
-import java.util.List;
 import umc.hackathon.chagok.web.dto.PostResponse;
 
 

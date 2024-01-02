@@ -9,13 +9,11 @@ import umc.hackathon.chagok.apiPayload.code.status.ErrorStatus;
 import umc.hackathon.chagok.apiPayload.exception.GeneralException;
 import umc.hackathon.chagok.entity.Category;
 import umc.hackathon.chagok.entity.Member;
-import umc.hackathon.chagok.entity.Post;
 import umc.hackathon.chagok.repository.CategoryRepository;
 import umc.hackathon.chagok.service.MemberService.MemberService;
 import umc.hackathon.chagok.web.dto.CategoryRequest;
 import umc.hackathon.chagok.web.dto.CategoryResponse;
 import umc.hackathon.chagok.web.dto.CategoryResponse.CategoryDTO;
-import umc.hackathon.chagok.web.dto.PostRequest;
 
 @Service
 @RequiredArgsConstructor
