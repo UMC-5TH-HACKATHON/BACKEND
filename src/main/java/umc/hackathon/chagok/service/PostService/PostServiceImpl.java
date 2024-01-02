@@ -3,11 +3,14 @@ package umc.hackathon.chagok.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.hackathon.chagok.apiPayload.code.status.ErrorStatus;
+import umc.hackathon.chagok.apiPayload.exception.GeneralException;
 import umc.hackathon.chagok.entity.Category;
 import umc.hackathon.chagok.entity.Member;
 import umc.hackathon.chagok.entity.Post;
 import umc.hackathon.chagok.entity.Tag;
 import umc.hackathon.chagok.repository.PostRepository;
+import umc.hackathon.chagok.repository.TagRepository;
 import umc.hackathon.chagok.service.MemberService.MemberService;
 import umc.hackathon.chagok.service.categoryService.CategoryService;
 import umc.hackathon.chagok.web.dto.PostRequest;
@@ -24,6 +27,7 @@ public class PostServiceImpl implements PostService{
     private final MemberService memberService;
     private final CategoryService categoryService;
     private final PostRepository postRepository;
+    private final TagRepository tagRepository;
 
     @Transactional
     public Post createPost(Long memberId, PostRequest.CreatePostDTO request){
@@ -53,5 +57,34 @@ public class PostServiceImpl implements PostService{
         postRepository.save(newPost);
 
         return newPost;
+    }
+
+    @Transactional
+    public Post updatePost(Long postId, PostRequest.UpdatePostDTO request){
+
+        Post post = findPost(postId);
+        Category category = categoryService.findCategory(request.getCategory());
+        // 태그 저장하기
+        List<Tag> tagList = Arrays.stream(request.getTags().split("#")).map(
+                tag -> Tag.builder()
+                        .tagName(tag)
+                        .build()
+        ).toList();
+
+        post.setTitle(request.getTitle());
+        post.setContent(request.getContent());
+        post.setCategory(category);
+
+        tagRepository.deleteAll(post.getTagList());
+        post.setTagList(tagList);
+
+        return post;
+    }
+
+    public Post findPost(Long postId){
+        return postRepository.findById(postId).orElseThrow(
+                () -> {throw new GeneralException(ErrorStatus.POST_NOT_FOUND);
+                }
+        );
     }
 }

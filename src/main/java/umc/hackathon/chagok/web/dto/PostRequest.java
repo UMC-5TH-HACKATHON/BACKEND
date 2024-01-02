@@ -13,4 +13,13 @@ public class PostRequest {
         private Long category;
         private String tags;
     }
+
+    @NoArgsConstructor
+    @Getter
+    public static class UpdatePostDTO{
+        private String title;
+        private String content;
+        private Long category;
+        private String tags;
+    }
 }
