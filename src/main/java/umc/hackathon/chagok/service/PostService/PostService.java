@@ -20,4 +20,6 @@ public interface PostService {
 
     public void deletePost(Long postId);
 
+    List<Post> getMyDatePostList(Long memberId, Integer mm, Integer yy, Integer dd);
+
 }

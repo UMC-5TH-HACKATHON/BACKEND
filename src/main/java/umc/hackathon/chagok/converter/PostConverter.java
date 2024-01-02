@@ -23,6 +23,26 @@ public class PostConverter {
                 .build();
     }
 
+    public static PostResponse.PostTimeContentDTO postTimeContentDTO(Member member, Post post){
+
+        return PostResponse.PostTimeContentDTO.builder()
+                .title(post.getTitle())
+                .content(post.getContent())
+                .categoryId(post.getCategory().getId())
+                .tagList(post.getTagList().stream().map(tag -> tag.getTagName()).toList())
+                .createdAt(post.getCreatedAt())
+                .build();
+    }
+
+    public static PostResponse.PostTimeContentListDTO postTimeContentListDTO(List<Post> postList){
+        List<PostResponse.PostTimeContentDTO> postTimeContentDTOList = postList.stream()
+                .map(post -> postTimeContentDTO(post.getMember(), post)).collect(Collectors.toList());
+
+        return PostResponse.PostTimeContentListDTO.builder()
+                .postTimeContentDTOList(postTimeContentDTOList)
+                .build();
+    }
+
     public static PostResponse.MyPostPreviewDTO myPostPreviewDTO(Member member, Post post){
 
         return PostResponse.MyPostPreviewDTO.builder()
