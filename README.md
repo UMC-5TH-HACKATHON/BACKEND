@@ -11,7 +11,7 @@
 <br>
 
 ## 🛠 기술 스택
-> <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=JAVA&logoColor=white"/> <img src="https://img.shields.io/badge/Spring-61DAFB?style=flat-square&logo=MySql&logoColor=white"/> <img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
+> <img src="https://img.shields.io/badge/JAVA?style=flat-square&logo=JAVA&logoColor=white"/> <img src="https://img.shields.io/badge/Spring-61DAFB?style=flat-square&logo=MySql&logoColor=white"/> <img src="https://img.shields.io/badge/MySql-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
 <br>
 
 ## 📃 Commit Message Convention
