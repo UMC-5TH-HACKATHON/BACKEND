@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.hackathon.chagok.apiPayload.code.BaseErrorCode;
+import umc.hackathon.chagok.apiPayload.code.status.ErrorStatus;
 import umc.hackathon.chagok.apiPayload.exception.GeneralException;
 import umc.hackathon.chagok.entity.Member;
 import umc.hackathon.chagok.entity.Post;
@@ -20,11 +22,19 @@ import umc.hackathon.chagok.web.dto.MemberRequest;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly= true)
+
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final PostRepository postRepository;
 
+    public Member findMember(Long memberId){
+        return memberRepository.findById(memberId).orElseThrow(
+                () -> {
+                    throw new GeneralException(ErrorStatus.MEMBER_NOT_FOUND);
+                }
+        );
+    }
     public List<Boolean> boxCheck(Long memberId, Integer mm, Integer yy) {
         Optional<Member> memberOptional = memberRepository.findById(memberId);
 
