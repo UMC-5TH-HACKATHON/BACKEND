@@ -3,6 +3,7 @@ package umc.hackathon.chagok.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import umc.hackathon.chagok.entity.Category;
 import umc.hackathon.chagok.entity.Member;
 import umc.hackathon.chagok.entity.Post;
@@ -16,6 +17,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import umc.hackathon.chagok.repository.MemberRepository;
+
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly= true)
@@ -24,6 +28,7 @@ public class PostServiceImpl implements PostService{
     private final MemberService memberService;
     private final CategoryService categoryService;
     private final PostRepository postRepository;
+    private final MemberRepository memberRepository;
 
     @Transactional
     public Post createPost(Long memberId, PostRequest.CreatePostDTO request){
@@ -53,5 +58,19 @@ public class PostServiceImpl implements PostService{
         postRepository.save(newPost);
 
         return newPost;
+
+    @Override
+    public List<Post> getMyPostList(Long memberId) {
+
+        Member member = memberRepository.findById(memberId).get();
+        List<Post> myPostList = postRepository.findAllByMember(member);
+        return myPostList;
+    }
+
+    @Override
+    public List<Post> getPostList() {
+
+        List<Post> postList = postRepository.findAll();
+        return postList;
     }
 }

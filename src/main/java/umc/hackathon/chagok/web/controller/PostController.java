@@ -1,12 +1,20 @@
 package umc.hackathon.chagok.web.controller;
 
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import umc.hackathon.chagok.apiPayload.ApiResponse;
 import umc.hackathon.chagok.service.PostService.PostService;
 import umc.hackathon.chagok.web.dto.PostRequest;
+import lombok.Getter;
+import umc.hackathon.chagok.converter.PostConverter;
+import umc.hackathon.chagok.entity.Post;
+
+import java.util.List;
+
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController {
@@ -19,5 +27,17 @@ public class PostController {
         postService.createPost(memberId, request);
 
         return ApiResponse.onSuccess(null);
+    }
+  
+    @GetMapping("/")
+    public ApiResponse<PostResponse.PostPreviewListDTO> getPostList(){
+        List<Post> postList = postService.getPostList();
+        return ApiResponse.onSuccess(PostConverter.postPreviewListDTO(postList));
+    }
+
+    @GetMapping("/{memberId}")
+    public ApiResponse<PostResponse.MyPostPreviewListDTO> getMyPostList(@PathVariable(name = "memberId") Long memberId){
+        List<Post> myPostList = postService.getMyPostList(memberId);
+        return ApiResponse.onSuccess(PostConverter.myPostPreviewListDTO(myPostList));
     }
 }
