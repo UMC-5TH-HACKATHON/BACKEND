@@ -40,6 +40,15 @@ public class PostController {
 
         return ApiResponse.onSuccess(null);
     }
+
+    // TIL 삭제하기
+    @DeleteMapping("/{postId}")
+    public ApiResponse<Null> deletePost(@PathVariable(name = "postId")Long postId){
+
+        postService.deletePost(postId);
+
+        return ApiResponse.onSuccess(null);
+    }
   
     @GetMapping("/")
     public ApiResponse<PostResponse.PostPreviewListDTO> getPostList(){
