@@ -21,6 +21,7 @@ public class Post extends BaseEntity{
     private String title;
 
     @Setter
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @JoinColumn(name = "member_id")

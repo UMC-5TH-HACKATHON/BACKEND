@@ -15,6 +15,7 @@ public class Knowledge extends  BaseEntity{
     @Column(nullable = false, length = 200)
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     private String imgUrl;
