@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface PostService {
 
+    List<Post> getMyPostList(Long memberId);
+
     List<Post> getPostList();
 }
