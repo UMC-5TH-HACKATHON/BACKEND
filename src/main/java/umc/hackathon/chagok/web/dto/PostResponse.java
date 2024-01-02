@@ -65,4 +65,24 @@ public class PostResponse {
         List<String> tagList;
         LocalDateTime createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PostTimeContentDTO{
+        String title;
+        String content;
+        Long categoryId;
+        List<String> tagList;
+        LocalDateTime createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PostTimeContentListDTO{
+        List<PostTimeContentDTO> postTimeContentDTOList;
+    }
 }

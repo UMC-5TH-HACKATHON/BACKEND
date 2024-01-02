@@ -18,10 +18,17 @@ import umc.hackathon.chagok.service.MemberService.MemberService;
 import umc.hackathon.chagok.service.categoryService.CategoryService;
 import umc.hackathon.chagok.web.dto.PostRequest;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import umc.hackathon.chagok.repository.MemberRepository;
+
+import static umc.hackathon.chagok.apiPayload.code.status.ErrorStatus.MEMBER_NOT_FOUND;
+import static umc.hackathon.chagok.apiPayload.code.status.ErrorStatus.POST_NOT_FOUND;
 
 
 @Service
@@ -72,9 +79,46 @@ public class PostServiceImpl implements PostService{
     @Override
     public List<Post> getMyPostList(Long memberId) {
 
+        Optional<Member> memberOptional = memberRepository.findById(memberId);
+
+        if (memberOptional.isEmpty()) {
+            throw new GeneralException(MEMBER_NOT_FOUND);
+        }
+
         Member member = memberRepository.findById(memberId).get();
         List<Post> myPostList = postRepository.findAllByMember(member);
         return myPostList;
+    }
+
+    @Override
+    public List<Post> getMyDatePostList(Long memberId, Integer mm, Integer yy, Integer dd){
+
+        Optional<Member> memberOptional = memberRepository.findById(memberId);
+
+        List<Post> myDatePostList = new ArrayList<>();
+
+        if (memberOptional.isEmpty()) {
+            throw new GeneralException(MEMBER_NOT_FOUND);
+        }
+
+        Member member = memberRepository.findById(memberId).get();
+        List<Post> myTempDatePostList = postRepository.findAllByMember(member);
+
+        LocalDate inputDate = LocalDate.of(yy,mm,dd);
+
+        for(int i = 0; i < myTempDatePostList.size(); i++){
+            LocalDateTime temp = myTempDatePostList.get(i).getCreatedAt();
+            LocalDate compareLocalDate = temp.toLocalDate();
+            if(compareLocalDate.isEqual(inputDate)){
+                myDatePostList.add(myTempDatePostList.get(i));
+            }
+        }
+
+        if(myDatePostList.isEmpty()){
+            throw new GeneralException(POST_NOT_FOUND);
+        }
+
+        return myDatePostList;
     }
 
     @Override
@@ -87,6 +131,13 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public Post getPostContent(Long postId) {
+
+        Optional<Post> postOptional = postRepository.findById(postId);
+
+        if (postOptional.isEmpty()) {
+            throw new GeneralException(POST_NOT_FOUND);
+        }
+
         Post postContent = postRepository.findById(postId).get();
         return postContent;
     }
@@ -131,7 +182,7 @@ public class PostServiceImpl implements PostService{
 
     public Post findPost(Long postId){
         return postRepository.findById(postId).orElseThrow(
-                () -> {throw new GeneralException(ErrorStatus.POST_NOT_FOUND);
+                () -> {throw new GeneralException(POST_NOT_FOUND);
                 }
         );
     }
