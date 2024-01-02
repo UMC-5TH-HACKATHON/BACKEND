@@ -22,20 +22,21 @@ import umc.hackathon.chagok.web.dto.MemberRequest;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly= true)
+@Transactional(readOnly = true)
 
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final PostRepository postRepository;
 
-    public Member findMember(Long memberId){
+    public Member findMember(Long memberId) {
         return memberRepository.findById(memberId).orElseThrow(
                 () -> {
                     throw new GeneralException(ErrorStatus.MEMBER_NOT_FOUND);
                 }
         );
     }
+
     public List<Boolean> boxCheck(Long memberId, Integer mm, Integer yy) {
         Optional<Member> memberOptional = memberRepository.findById(memberId);
 
@@ -58,9 +59,9 @@ public class MemberServiceImpl implements MemberService {
             boxCheckList.add(postExists);
         }
         return boxCheckList;
-        }
-        
-        public Long login(MemberRequest.LoginRequestDTO request) {
+    }
+
+    public Long login(MemberRequest.LoginRequestDTO request) {
         String email = request.getEmail();
         String password = request.getPassword();
         Optional<Member> memberOptional = memberRepository.findByEmailAndPassword(email, password);

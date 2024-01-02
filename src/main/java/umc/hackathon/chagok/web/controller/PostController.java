@@ -11,12 +11,12 @@ import umc.hackathon.chagok.converter.PostConverter;
 import umc.hackathon.chagok.entity.Post;
 
 import java.util.List;
+import umc.hackathon.chagok.web.dto.PostResponse;
 
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/posts")
-@RequiredArgsConstructor
 public class PostController {
 
     private final PostService postService;
