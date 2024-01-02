@@ -53,14 +53,10 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Transactional
-    public Category createCategory(Long memberId, CategoryRequest.CreateCategoryDto request) {
+    public Category createCategory(CategoryRequest.CreateCategoryDto request) {
         Category newCategory = Category.builder()
                 .categoryName(request.getName())
                 .build();
-
-        Member member = memberService.findMember(memberId);
-
-        newCategory.setMember(member);
 
         categoryRepository.save(newCategory);
 

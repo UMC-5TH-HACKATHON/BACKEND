@@ -122,6 +122,29 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    public List<Post> getSearchTagPostList(String tagName){
+
+        List<Post> searchTagPostList = new ArrayList<>();
+
+        List<Post> allPost = postRepository.findAll();
+
+        for(int i = 0; i < allPost.size(); i++){
+            List<Tag> tagList = allPost.get(i).getTagList();
+            List<String> tagNameList = tagList.stream().map(tag -> tag.getTagName()).toList();
+            for(int j = 0; j < tagNameList.size(); j++){
+                if (tagNameList.get(j).contains(tagName))
+                    searchTagPostList.add(allPost.get(i));
+            }
+        }
+
+        if(searchTagPostList.isEmpty()){
+            throw new GeneralException(POST_NOT_FOUND);
+        }
+
+        return searchTagPostList;
+    }
+
+    @Override
     public List<Post> getPostList() {
 
         List<Post> postList = postRepository.findAll();

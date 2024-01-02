@@ -8,7 +8,7 @@ import umc.hackathon.chagok.web.dto.CategoryResponse.CategoryDTO;
 public interface CategoryService {
 
 
-    public Category createCategory(Long memberId, CategoryRequest.CreateCategoryDto request);
+    public Category createCategory(CategoryRequest.CreateCategoryDto request);
     public Category findCategory(Long categoryId);
 
     public List<Category> findAllCategory();

@@ -85,4 +85,24 @@ public class PostResponse {
     public static class PostTimeContentListDTO{
         List<PostTimeContentDTO> postTimeContentDTOList;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PostSearchTagDTO{
+        String title;
+        String content;
+        Long categoryId;
+        List<String> tagList;
+        LocalDateTime createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PostSearchTagListDTO{
+        List<PostSearchTagDTO> postSearchTagDTOList;
+    }
 }
