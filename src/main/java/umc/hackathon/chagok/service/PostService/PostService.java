@@ -12,7 +12,7 @@ public interface PostService {
     public Post updatePost(Long postId, PostRequest.UpdatePostDTO request);
 
     List<Post> getMyPostList(Long memberId);
-    
+
     List<Post> getPostList();
 
 }

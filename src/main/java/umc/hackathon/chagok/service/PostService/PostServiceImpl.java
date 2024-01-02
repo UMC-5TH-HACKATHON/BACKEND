@@ -34,7 +34,7 @@ public class PostServiceImpl implements PostService{
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Post createPost(Long memberId, PostRequest.CreatePostDTO request){
+    public Post createPost(Long memberId, PostRequest.CreatePostDTO request) {
 
         // 멤버 찾기
         Member member = memberService.findMember(memberId);
